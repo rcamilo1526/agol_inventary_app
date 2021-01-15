@@ -4,12 +4,14 @@ RUN mkdir app
 
 WORKDIR /app
 
-COPY requirements.txt .
+
 
 # RUN python --version
 # RUN pip --version
-RUN conda install -c esri arcgis
+COPY requirements.txt .
 RUN pip install -r requirements.txt
+
+RUN conda install -c esri arcgis --no-deps
 
 COPY . .
 CMD streamlit run main.py
